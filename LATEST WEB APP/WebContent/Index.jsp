@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="StringFunctions.obj"%>
 <%@page import="StringFunctions.del"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -11,17 +12,21 @@
 
 
 <%
+//departments that user wants to see data for
+ArrayList arr = new ArrayList();
+arr.add("CWS");
+arr.add("CSR");
+arr.add("CJK");
 
 del d = new del();
-d.getInputTableInformation("EN", "name", "JP", null);
-obj a[] = d.printCommonStrings();
-for(int i = 0;i<a.length;i++)
-{
-	if(a[i].n!=0)
-	{
-		out.println(a[i].str+" - "+a[i].n);
-	}
-}
+d.getInputTableInformation("EN", "name", "JP", arr);
+
+// obj a[] = d.printCommonStrings("TOTAL");
+// for(int i = 0;i<a.length;i++)
+// {
+// 		out.println(a[i].str+" - "+a[i].no[0]+"\n");
+// }
+
 
 %>
 </body>

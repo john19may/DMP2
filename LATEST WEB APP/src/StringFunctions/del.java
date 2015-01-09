@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-
 public class del {
 
 	
@@ -38,10 +37,16 @@ public class del {
 	//DATABASE connection parameters
 	Properties info;
 	String URL;
+	Connection conn;
 	
 	//Logic parameters
 	HashMap hm = new HashMap();
-	String[] stringsToProcess;
+	String[] stringsToProcess ;
+	String[] deptOfStringToProcess;
+	obj top[] = new obj[5];
+	String deptUserWantsToSee[];
+	String queryLanguageCode, query, suggestionLanguageCode;
+	
 	
 	//constructor
 	public del() {
@@ -59,49 +64,139 @@ public class del {
 		   info = new Properties( );
 		   info.put( "user", "companycom" );
 		   info.put( "password", "companycom" );
+		   try {
+			conn = DriverManager.getConnection(URL, info);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	
 	
-	public obj[] printCommonStrings()
+	public obj[] printCommonStrings(String sortByDept)
 	{
 
 		int n = stringsToProcess.length;
 		for(int i = 0;i<n;i++)
 		{
-			addIntoHashmap(hm, stringsToProcess[i]);
+			addIntoHashmap(hm, stringsToProcess[i], deptOfStringToProcess[i]);
 		}
 		
-		obj[] a = new obj[hm.size()];
-		for(int i=0;i<hm.size();i++)
-		{
-			a[i] = new obj();
-		}
+		ArrayList<obj> a = new ArrayList<obj>();
+		
 		
 		int j=0;
 		    Iterator it = hm.entrySet().iterator();
 		    while (it.hasNext()) {
 		        Map.Entry pairs = (Map.Entry)it.next();
-		        a[j].str = (String)pairs.getKey();
-		        if((int)pairs.getValue()>1)
-		        a[j].n = ((int)pairs.getValue());
-		        else
-		        	a[j].n = 0;
+		        obj oo = new obj();
+		        oo.str = (String)pairs.getKey();
+		        int no[] = (int[])pairs.getValue();
+		        if(no[0]>1)
+		        {
+		        	oo.no = no;
+		        	a.add(oo);
+		        }
+		        
 		        j++;
 		    }
 		    
-		    Arrays.sort(a);
+		    //save memory
+		    hm = null;
 		    
-		    return a;
+		    	if(a.size()<=5)
+		    	{
+		    		top = a.toArray(new obj[a.size()]); 
+		    		Arrays.sort(top);
+		    	}
+		    	
+		    	//get top 5 results from the array in best complexity
+		    	else
+		    	{
+		    		for(int i=0;i<5;i++)
+		    			top[i] = a.get(i);
+		    		
+		    		Arrays.sort(top);
+		    		
+		    		for(int i=0;i<4;i++)
+		    		{
+		    			for(j=i+1;j<5;j++)
+		    			{
+		    				if(top[i].compareTo(top[j])==0&&top[i].str.length()<top[j].str.length())
+		    				{
+		    					swap(i,j);
+		    				}
+		    			}
+		    		}
+		    		
+		    		for(int i=5;i<a.size();i++)
+		    		{
+		    			
+		    			if((a.get(i).compareTo(top[0])==0&&a.get(i).compareStringLength(top[0])<0)||a.get(i).compareTo(top[0])<0)
+		    			{
+		    				top[4] = top[3];
+		    				top[3] = top[2];
+		    				top[2] = top[1];
+		    				top[1] = top[0];
+		    				top[0] = a.get(i);
+		    			}
+		    			else if((a.get(i).compareTo(top[1])==0&&a.get(i).compareStringLength(top[1])<0)||a.get(i).compareTo(top[1])<0)
+		    			{
+		    				top[4] = top[3];
+		    				top[3] = top[2];
+		    				top[2] = top[1];
+		    				top[1] = a.get(i);
+		    				
+		    			}
+		    			else if((a.get(i).compareTo(top[2])==0&&a.get(i).compareStringLength(top[2])<0)||a.get(i).compareTo(top[2])<0)
+		    			{
+		    				top[4] = top[3];
+		    				top[3] = top[2];
+		    				top[2] = a.get(i);
+		    			}
+		    			else if((a.get(i).compareTo(top[3])==0&&a.get(i).compareStringLength(top[3])<0)||a.get(i).compareTo(top[3])<0)
+		    			{
+		    				top[4] = top[3];
+		    				top[3] = a.get(i);
+		    			}
+		    			else if((a.get(i).compareTo(top[4])==0&&a.get(i).compareStringLength(top[4])<0)||a.get(i).compareTo(top[4])<0)
+		    			{
+		    				top[4] = a.get(i);
+		    			}
+		    		}
+		    	}
+		    
+		   
+		    for(int i=0;i<5;i++)
+		    {
+		    	System.out.print(top[i].str+" ");
+		    	System.out.print(top[i].no[0]+" ");
+		    	for(int l = 0; l<deptUserWantsToSee.length;l++)
+		    	{
+		    			System.out.print(deptUserWantsToSee[l]+" "+top[i].no[DepartmentIndex.getInstance().dept.get(deptUserWantsToSee[l])]+" ");
+		    	}
+		    	System.out.println();
+		    }
+		    
+		    try {
+				InsertIntoSHT(conn.createStatement());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    return top;
 		    
 	}
 	
-	public static void addIntoHashmap(HashMap hm, String str)
+	public static void addIntoHashmap(HashMap hm, String str, String Dept)
 	{
 		
 		int window=1;
 		
 		HashMap notFromSameString = new HashMap();
+		
+		DepartmentIndex di = DepartmentIndex.getInstance();
 		
 		for(window = 1; window<=str.length(); window++ )
 		for(int i = 0; i<= str.length() - window; i++ )
@@ -114,111 +209,152 @@ public class del {
 				{
 					if(hm.get(sub)==null)
 					{
-						hm.put(sub, 1);
+						int d[] = new int[di.dept.size()];
+						Arrays.fill( d, (int) 0 );
+						d[0] = 1;
+						d[di.dept.get(Dept)] = 1;
+						hm.put(sub, d);
 					}
 					else
 					{
-						hm.put(sub, ((int)hm.get(sub))+1);
+						int d[];
+						
+						d = (int[]) hm.get(sub);
+						
+						d[0]++;
+						d[di.dept.get(Dept)]++;
+						hm.put(sub, d);
 					}
 					notFromSameString.put(sub, 1);
 				}
 			}
-			
-				
+							
 		}
 		
 	 }
 	
+	//method to retrieve data from previous history table database
 	public void getInputTableInformation(String queryLanguageCode, String query, String suggestionLanguageCode, ArrayList<String> departments)
 	{
-		Connection conn = null;
-		   try {
-			conn = DriverManager.getConnection(URL, info);
-			Statement stmt=conn.createStatement();
-			Statement stmt2=conn.createStatement();  
+		this.queryLanguageCode = queryLanguageCode;
+		this.query = query;
+		this.suggestionLanguageCode = suggestionLanguageCode;
+		
+		Statement stmt2;
+		ResultSet result = null;
+		try {
+			stmt2 = conn.createStatement();
+			 result = stmt2.executeQuery("SELECT TOP 1 FROM QHT WHERE QUERYSTRING='"+query.toLowerCase()+"'");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
 			
-			String GET_HISTORY_DATA = "";
-			
-			query = query.toLowerCase();
-			
-			 
-			GET_HISTORY_DATA = "(SELECT LANG2TEXT FROM (SELECT LANG1TEXT,LANG2TEXT FROM PHT WHERE LANG1ID='"+queryLanguageCode+"' AND LANG2ID='"+suggestionLanguageCode+"') WHERE LANG1TEXT LIKE '%"+query+"%') UNION ALL "
-					+"SELECT LANG1TEXT FROM (SELECT LANG1TEXT,LANG2TEXT FROM PHT WHERE LANG1ID='"+suggestionLanguageCode+"' AND LANG2ID='"+queryLanguageCode+"') WHERE LANG2TEXT LIKE '%"+query+"%'";
-			ResultSet rs = stmt.executeQuery(GET_HISTORY_DATA);
-			
-			
-			ArrayList<String> arr = new ArrayList<String>();
-			
-			while(rs.next())
+			e1.printStackTrace();
+		}
+		
+		
+		try {
+			if(result.next())
 			{
-				arr.add(rs.getString(1));
-			}
+				System.out.println("true");
+			}	
 			
-			stringsToProcess = arr.toArray(new String[arr.size()]);
-			
-			
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			finally
+			else
 			{
 				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}		
+					
+					deptUserWantsToSee = departments.toArray(new String[departments.size()]);
+					
+					Statement stmt=conn.createStatement();
+					
+					String GET_HISTORY_DATA = "";
+					
+					query = query.toLowerCase();
+					
+					 
+					GET_HISTORY_DATA = "(SELECT LANG2TEXT,DEPT FROM (SELECT LANG1TEXT,LANG2TEXT,DEPT FROM PHT WHERE LANG1ID='"+queryLanguageCode+"' AND LANG2ID='"+suggestionLanguageCode+"') WHERE LANG1TEXT LIKE '%"+query+"%') UNION ALL "
+							+"SELECT LANG1TEXT,DEPT FROM (SELECT LANG1TEXT,LANG2TEXT,DEPT FROM PHT WHERE LANG1ID='"+suggestionLanguageCode+"' AND LANG2ID='"+queryLanguageCode+"') WHERE LANG2TEXT LIKE '%"+query+"%'";
+					ResultSet rs = stmt.executeQuery(GET_HISTORY_DATA);
+					
+					
+					ArrayList<String> arr_str = new ArrayList<String>();
+					ArrayList<String> arr_dept = new ArrayList<String>();
+					
+					while(rs.next())
+					{
+						arr_str.add(rs.getString(1));
+						arr_dept.add(rs.getString(2));
+					}
+					
+					stringsToProcess = arr_str.toArray(new String[arr_str.size()]);
+					deptOfStringToProcess = arr_dept.toArray(new String[arr_dept.size()]);
+					
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   
 	}
 
 	
 	//method to add into Query history table
-	public static void InsertIntoQHT(Statement stmt, String langID, String queryString, String suggestionIDsString) throws SQLException
+	public void InsertIntoQHT(Statement stmt, String suggestionIDsString) throws SQLException
 	   {
+		   
 		   ResultSet rs=stmt.executeQuery("select count(*) from QHT");
 		   rs.next();
 		   int id = Integer.valueOf(rs.getString(1));
 		   id++;
-		   stmt.executeQuery("INSERT INTO QHT (id, langID, queryString, suggestionIDs) VALUES ("+id+", '"+langID+"', '"+queryString+"', '"+suggestionIDsString+"')");
+		   
+		   
+		   stmt.executeQuery("INSERT INTO QHT (id, langID, queryString, suggestionIDs) VALUES ("+id+", '"+queryLanguageCode+"', '"+query+"', '"+suggestionIDsString+"')");
+		   stmt.close();
 	   }
 	   
 		//method to add into Suggestions history table
-	   public static void InsertIntoSHT(Statement stmt, String langID, String suggestionString, HashMap deptWiseCount) throws SQLException
+	   public void InsertIntoSHT(Statement stmt) throws SQLException
 	   {
 		   ResultSet rs=stmt.executeQuery("select count(*) from SHT");
 		   rs.next();
 		   int id = Integer.valueOf(rs.getString(1));
 		   id++;
 		   
+		   int dd = id;
+		   String suggestionIDsString = "";
+		   for(int i=0;i<top.length;i++)
+		   {
+			   suggestionIDsString += dd+"$";
+			   dd++;
+		   }
 		   
-		   rs= stmt.executeQuery("select column_name from user_tab_columns where table_name = 'SHT'");
-			
-		   int temp = 1;
-		   String str = "";
+		   for(int i=0;i<top.length;i++)
+		   {
+			   String str = "";
+			   
+			   for(int t=0;t<top[i].no.length;t++)
+				   str+=", "+top[i].no[t];
+				
+				String addEntry="INSERT INTO SHT (id, langID, suggestionText, total, CWS, CSR, CJK) VALUES ("+id+", '"+suggestionLanguageCode+"', '"+top[i].str+"'"+str+")";
+			   
+			   stmt.executeQuery(addEntry);
+			   id++;
+		   }
 		   
-			while(rs.next())  
-				 {
-					
-					if(temp>3)
-					{
-						if(deptWiseCount.get(rs.getString(1))!=null)
-						{
-							str+=", "+deptWiseCount.get(rs.getString(1));
-						}
-						else
-						{
-							str+=", 0";
-						}
-						
-					}
-					temp++;
-				 }
-			
-			String addEntry="INSERT INTO SHT (id, langID, suggestionText, total, CWS, CSR, CJK) VALUES ("+id+", '"+langID+"', '"+suggestionString+"'"+str+")";
-			
-			//System.out.println(addEntry);
-		   
-		   stmt.executeQuery(addEntry);
+		   InsertIntoQHT(conn.createStatement(),suggestionIDsString);
+		   stmt.close();
+	   }
+	   
+	   public void swap(int i,int j)
+	   {
+		   obj temp22 = top[i];
+		   top[i] = top[j];
+		   top[j] = temp22;
 	   }
 }
