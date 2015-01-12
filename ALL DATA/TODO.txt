@@ -1,1 +1,2 @@
-1. Try to improve the PHT structure
+1. Structure the code correclty and add comments - m
+2. Link query table completely to program - H

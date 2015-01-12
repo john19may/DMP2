@@ -1,0 +1,21 @@
+div.container {
+        margin: 15px;   
+    }
+    div.left {
+        float: left;
+        padding: 10px;    
+    }
+    div.right {
+        margin-left: auto;
+    	margin-right: auto;
+    	width: 30%;
+        padding: 10px;    
+        text-align: center;
+        font-size: 150%
+    }
+    div.right {
+        background-color: yellow;    
+    }
+    
+    
+    
