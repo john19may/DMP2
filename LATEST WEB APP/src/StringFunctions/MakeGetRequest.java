@@ -13,11 +13,11 @@ public class MakeGetRequest {
 	
 	private final String USER_AGENT = "Mozilla/5.0";
 	// HTTP GET request
-		public String sendGet(char c, String query) throws Exception {
+		public String sendGet(char c, String query, String lang1ID, String lang2ID) throws Exception {
 	 
 			query = query.toLowerCase().trim();
 			
-			URL obj = new URL("http://translate.google.com/translate_a/t?client="+c+"&text="+URLEncoder.encode(query, "UTF-8")+"&sl=en&tl=hi");
+			URL obj = new URL("http://translate.google.com/translate_a/t?client="+c+"&text="+URLEncoder.encode(query, "UTF-8")+"&sl="+lang1ID+"&tl="+lang2ID);
 			
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 	 

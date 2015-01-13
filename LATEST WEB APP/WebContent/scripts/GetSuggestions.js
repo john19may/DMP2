@@ -2,8 +2,13 @@
  *  This file actually fetches suggestions from the previous history and google
  */
 
-function ShowSelection()
+function ShowSelection(input_language,output_language)
 {
+	$("#img-spinner").show();
+	$("#img-spinner2").show();
+	$('#suggestion_but').attr('disabled', 'disabled');
+	document.getElementById("getResponse").innerHTML="";
+	
   var textComponent = document.getElementById('Editor');
   var selectedText;
   // IE version
@@ -18,7 +23,7 @@ function ShowSelection()
   {
     var startPos = textComponent.selectionStart;
     var endPos = textComponent.selectionEnd;
-    selectedText = textComponent.value.substring(startPos, endPos)
+    selectedText = textComponent.value.substring(startPos, endPos);
   }
   
   if(selectedText.length<=1)
@@ -26,8 +31,9 @@ function ShowSelection()
   else
   {
   	 var depts = ["CWS", "CSR", "CJK"];
-  	 makeAjaxRequest("EN", selectedText,"JP",depts);
-  	 getGoogleWords(selectedText);
+  	 
+  	 makeAjaxRequest(input_language,selectedText, output_language,depts);
+  	 getGoogleWords(input_language,selectedText,output_language);
   }
   
 }
@@ -56,7 +62,7 @@ function makeAjaxRequest(lang1ID, query, lan2ID, depts)
 	  {
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 	    {
-	    	document.getElementById("historySuggestions").innerHTML="> History based suggestions for \""+query+"\"";
+	    	
 	    	document.getElementById("getResponse").innerHTML=xmlhttp.responseText;
 	    	$(document).ready(function() 
 			    { 
@@ -64,16 +70,17 @@ function makeAjaxRequest(lang1ID, query, lan2ID, depts)
 							sortList: [[1,1]] 
 		    		});
 				}); 
+	    	
+	    	$("#img-spinner").hide();
+	    	$('#suggestion_but').removeAttr('disabled');
 	    }
-	    else{
-	    document.getElementById("historySuggestions").innerHTML="Problem while retrieving History based suggestions";
-	    }
+	    
 	  }
 	xmlhttp.open("GET","GetTable.jsp?lang1ID=" + lang1ID+"&queryString="+query+"&lang2ID="+lan2ID+"&depts="+str,true);
 	xmlhttp.send(null);
 }
 
-function getGoogleWords(query)
+function getGoogleWords(lang1ID, query, lang2ID)
 {
 	var xmlhttp;
 	if (window.XMLHttpRequest)
@@ -90,11 +97,11 @@ function getGoogleWords(query)
 	    {
 	    	
 	    		document.getElementById("googleSuggestion").innerHTML=xmlhttp.responseText;
+	    		$("#img-spinner2").hide();
 	    }
 	    else{
-	    
 	    }
 	  }
-	xmlhttp.open("GET","GetGoogleSuggestions.jsp?query="+query,true);
+	xmlhttp.open("GET","GetGoogleSuggestions.jsp?query="+query+"&lang1ID="+lang1ID+"&lang2ID="+lang2ID,true);
 	xmlhttp.send(null);
 }

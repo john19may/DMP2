@@ -17,7 +17,6 @@
 
 //departments that user wants to see data for
 
-	out.print("©");
 	String depts = request.getParameter("depts");
 	String arr2[] = depts.split("\\$");
 	ArrayList arr = new ArrayList();
@@ -36,6 +35,9 @@
 	
 	<!-- showing table using custom library table.sorter -->
 	
+	<p>History based suggestions for "<%=request.getParameter("queryString") %>"</p>
+	
+	<%if(a.length>0){ %>
 	<table id="myTable" class="tablesorter">
 	<thead>
 	 <tr>
@@ -86,7 +88,7 @@
 	
 	</tbody> 
 	</table>
-
+<%} %>
 </body>
 
 

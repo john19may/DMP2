@@ -1,6 +1,5 @@
 <%@page import="org.json.JSONArray"%>
 <%@page import="org.json.JSONObject"%>
-<%@page import="sun.org.mozilla.javascript.internal.json.JsonParser"%>
 <%@page import="StringFunctions.MakeGetRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,7 +17,9 @@
 		
 			MakeGetRequest make = new MakeGetRequest();
 			
-			String resp = make.sendGet('t',query);
+			System.out.println(request.getParameter("lang1ID")+" "+request.getParameter("lang2ID"));
+			
+			String resp = make.sendGet('t',query,request.getParameter("lang1ID"),request.getParameter("lang2ID"));
 			
 			String final_result="NOUN --->  ";
 			
@@ -28,7 +29,7 @@
     		
     		if(ind==-1)
 	    	{
-    			resp = make.sendGet('p',query);
+    			resp = make.sendGet('p',query,request.getParameter("lang1ID"),request.getParameter("lang2ID"));
     			
 				JSONObject jo = new JSONObject(resp);
 				

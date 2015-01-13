@@ -45,25 +45,25 @@ public class SingleQuery {
 	//constructor
 	public SingleQuery() {
 		
-//		//initializing database parameters
-//		Driver myDriver = new oracle.jdbc.driver.OracleDriver();
-//		try {
-//			DriverManager.registerDriver( myDriver );
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//		
-//		   URL = "jdbc:oracle:thin:@192.168.184.91:1521:cp06";
-//		   info = new Properties( );
-//		   info.put( "user", "companycom" );
-//		   info.put( "password", "companycom" );
-//		   try {
-//			conn = DriverManager.getConnection(URL, info);
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+		//initializing database parameters
+		Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+		try {
+			DriverManager.registerDriver( myDriver );
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		   URL = "jdbc:oracle:thin:@192.168.184.91:1521:cp06";
+		   info = new Properties( );
+		   info.put( "user", "companycom" );
+		   info.put( "password", "companycom" );
+		   try {
+			conn = DriverManager.getConnection(URL, info);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	
@@ -71,22 +71,57 @@ public class SingleQuery {
 	public obj[] getTop5Results()
 	{
 				
-//		Statement stmt2;
-//		ResultSet result = null;
-//		try {
-//			stmt2 = conn.createStatement();
-//			result = stmt2.executeQuery("SELECT TOP 1 FROM QHT WHERE QUERYSTRING='"+query.toLowerCase()+"'");
-//			if(result.next())
-//			{
-//				System.out.println("true");
-//				
-//				
-//				//Remaining to be added
-//			}
-//			else
-//			{
+		Statement stmt2;
+		ResultSet result = null;
+		try {
+			stmt2 = conn.createStatement();
+			result = stmt2.executeQuery("SELECT * FROM (SELECT * FROM QHT WHERE QUERYSTRING='"+query.toLowerCase()+"' AND LANG2ID='"+suggestionLanguageCode+"') where rownum <= 1");
+			if(result.next())
+			{
+				System.out.println("true");
+				String sugg = result.getString(5);
+				
+				String arrr[] = sugg.split("\\$");
+				
+				if(arrr.length==0)
+				{
+					top = new obj[0];
+				}
+				else
+				{
+					
+					int temm[] = new int[arrr.length];
+					for(int i=0;i<arrr.length;i++)
+					{
+						System.out.println(arrr[i]);
+						temm[i] = Integer.parseInt(arrr[i]);
+					}
+					Arrays.sort(temm);
+					String qq = "SELECT * FROM SHT WHERE id>="+temm[0]+" AND id<="+temm[temm.length-1];
+					ResultSet uu = stmt2.executeQuery(qq);
+					
+					
+					obj yu[] = new obj[temm.length];
+					int k2=0;
+					while(uu.next())
+					{
+							System.out.println(uu.getString(3));
+							yu[k2].str = uu.getString(3);
+							for(int ki=0;ki<DepartmentIndex.getInstance().dept.size();ki++)
+							{
+								yu[k2].no[ki] = uu.getInt(ki+4);
+							}
+							k2++;
+					}
+					top = yu;
+					
+				}
+				
+			}
+			else
+			{
 				GetProcessedData gpd = new GetProcessedData();
-				//gpd.setInputInformation(queryLanguageCode, query, suggestionLanguageCode);
+				gpd.setInputInformation(queryLanguageCode, query, suggestionLanguageCode);
 				
 				
 				ArrayList<obj> a = gpd.getProcessedObjArray();
@@ -155,15 +190,22 @@ public class SingleQuery {
 		    			}
 		    		}
 		    	}
-//			}
-//			
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			
-//			e1.printStackTrace();
-//		}
-			
 		    	
+		    	try {
+					InsertIntoSHT();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			
+			e1.printStackTrace();
+		}
+			
+		    
 		    return top;
 		    
 	}
@@ -189,14 +231,15 @@ public class SingleQuery {
 		   id++;
 		   
 		   
-		   stmt.executeQuery("INSERT INTO QHT (id, langID, queryString, suggestionIDs) VALUES ("+id+", '"+queryLanguageCode+"', '"+query+"', '"+suggestionIDsString+"')");
+		   stmt.executeQuery("INSERT INTO QHT (id, lang1ID, queryString, lang2ID, suggestionIDs) VALUES ("+id+", '"+queryLanguageCode+"', '"+query.toLowerCase()+"', '"+ suggestionLanguageCode +"', '"+suggestionIDsString+"')");
 		   stmt.close();
 	   }
 	   
 		//method to add into Suggestions history table
-	   public void InsertIntoSHT(Statement stmt) throws SQLException
+	   public void InsertIntoSHT() throws SQLException
 	   {
-		   ResultSet rs=stmt.executeQuery("select count(*) from SHT");
+		   Statement st = conn.createStatement();
+		   ResultSet rs=st.executeQuery("select count(*) from SHT");
 		   rs.next();
 		   int id = Integer.valueOf(rs.getString(1));
 		   id++;
@@ -218,12 +261,12 @@ public class SingleQuery {
 				
 				String addEntry="INSERT INTO SHT (id, langID, suggestionText, total, CWS, CSR, CJK) VALUES ("+id+", '"+suggestionLanguageCode+"', '"+top[i].str+"'"+str+")";
 			   
-			   stmt.executeQuery(addEntry);
+			   st.executeQuery(addEntry);
 			   id++;
 		   }
 		   
 		   InsertIntoQHT(conn.createStatement(),suggestionIDsString);
-		   stmt.close();
+		   st.close();
 	   }
 	   
 	   public void swap(int i,int j)

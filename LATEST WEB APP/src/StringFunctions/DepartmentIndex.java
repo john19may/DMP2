@@ -24,6 +24,7 @@ public class DepartmentIndex {
 		         dept.put("CSR", 2);
 		         dept.put("CJK", 3);
 		      }
+			   
 		      return instance;
 		   }
 		   
