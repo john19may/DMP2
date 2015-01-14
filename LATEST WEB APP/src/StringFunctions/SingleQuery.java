@@ -34,93 +34,87 @@ public class SingleQuery {
 	//DATABASE connection parameters
 	Properties info;
 	String URL;
-	Connection conn;
-	
-	//Logic parameters
-	
-	obj top[] = new obj[5];
-	String queryLanguageCode, query, suggestionLanguageCode;
 	
 	
-	//constructor
-	public SingleQuery() {
-		
-		//initializing database parameters
-		Driver myDriver = new oracle.jdbc.driver.OracleDriver();
-		try {
-			DriverManager.registerDriver( myDriver );
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	
+	
+	
+	
+	
+	public obj[] getTop5Results(Connection conn, String queryLanguageCode, String query, String suggestionLanguageCode)
+	{
+		if(conn!=null)
+		{
+			
+		}
+		else
+		{
+			//initializing database parameters
+			Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+			try {
+				DriverManager.registerDriver( myDriver );
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			   URL = "jdbc:oracle:thin:@192.168.184.91:1521:cp06";
+			   info = new Properties( );
+			   info.put( "user", "companycom" );
+			   info.put( "password", "companycom" );
+			   try {
+				conn = DriverManager.getConnection(URL, info);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		
-		   URL = "jdbc:oracle:thin:@192.168.184.91:1521:cp06";
-		   info = new Properties( );
-		   info.put( "user", "companycom" );
-		   info.put( "password", "companycom" );
-		   try {
-			conn = DriverManager.getConnection(URL, info);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
-	
-	
-	
-	public obj[] getTop5Results()
-	{
-				
+		
+		
+		obj top[] = new obj[5];
 		Statement stmt2;
 		ResultSet result = null;
 		try {
 			stmt2 = conn.createStatement();
 			result = stmt2.executeQuery("SELECT * FROM (SELECT * FROM QHT WHERE QUERYSTRING='"+query.toLowerCase()+"' AND LANG2ID='"+suggestionLanguageCode+"') where rownum <= 1");
+			
 			if(result.next())
-			{
-				System.out.println("true");
+			{		
 				String sugg = result.getString(5);
 				
 				String arrr[] = sugg.split("\\$");
 				
-				if(arrr.length==0)
+				int temm[] = new int[arrr.length];
+				for(int i=0;i<arrr.length;i++)
 				{
-					top = new obj[0];
+					temm[i] = Integer.parseInt(arrr[i]);
 				}
-				else
+				Arrays.sort(temm);
+				String qq = "SELECT * FROM SHT WHERE id>="+temm[0]+" AND id<="+temm[temm.length-1];
+				ResultSet uu = stmt2.executeQuery(qq);
+				
+				
+				obj yu[] = new obj[temm.length];
+				int k2=0;
+				
+				while(uu.next())
 				{
-					
-					int temm[] = new int[arrr.length];
-					for(int i=0;i<arrr.length;i++)
-					{
-						System.out.println(arrr[i]);
-						temm[i] = Integer.parseInt(arrr[i]);
-					}
-					Arrays.sort(temm);
-					String qq = "SELECT * FROM SHT WHERE id>="+temm[0]+" AND id<="+temm[temm.length-1];
-					ResultSet uu = stmt2.executeQuery(qq);
-					
-					
-					obj yu[] = new obj[temm.length];
-					int k2=0;
-					while(uu.next())
-					{
-							System.out.println(uu.getString(3));
-							yu[k2].str = uu.getString(3);
-							for(int ki=0;ki<DepartmentIndex.getInstance().dept.size();ki++)
-							{
-								yu[k2].no[ki] = uu.getInt(ki+4);
-							}
-							k2++;
-					}
-					top = yu;
-					
+						yu[k2] = new obj();
+						yu[k2].str = uu.getString(3);
+						yu[k2].no = new int[DepartmentIndex.getInstance().dept.size()];
+						for(int ki=0;ki<DepartmentIndex.getInstance().dept.size();ki++)
+						{
+							yu[k2].no[ki] = uu.getInt(ki+4);
+						}
+						k2++;
 				}
+				top = yu;
 				
 			}
 			else
 			{
-				GetProcessedData gpd = new GetProcessedData();
+				GetProcessedData gpd = new GetProcessedData(conn);
 				gpd.setInputInformation(queryLanguageCode, query, suggestionLanguageCode);
 				
 				
@@ -149,7 +143,7 @@ public class SingleQuery {
 		    			{
 		    				if(top[i].compareTo(top[j])==0&&top[i].str.length()<top[j].str.length())
 		    				{
-		    					swap(i,j);
+		    					swap(i,j,top);
 		    				}
 		    			}
 		    		}
@@ -192,7 +186,10 @@ public class SingleQuery {
 		    	}
 		    	
 		    	try {
-					InsertIntoSHT();
+		    		
+		    		if(top.length>0)
+					InsertIntoSHT(conn,queryLanguageCode,query,suggestionLanguageCode,top);
+		    		
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -209,20 +206,10 @@ public class SingleQuery {
 		    return top;
 		    
 	}
-	
-	
-	
-	public void setInputInformation(String queryLanguageCode, String query, String suggestionLanguageCode)
-	{
-		this.queryLanguageCode = queryLanguageCode;
-		this.query = query;
-		this.suggestionLanguageCode = suggestionLanguageCode;
-		   
-	}
 
 	
 	//method to add into Query history table
-	public void InsertIntoQHT(Statement stmt, String suggestionIDsString) throws SQLException
+	public synchronized void InsertIntoQHT(Statement stmt, String suggestionIDsString, String queryLanguageCode, String query, String suggestionLanguageCode) throws SQLException
 	   {
 		   
 		   ResultSet rs=stmt.executeQuery("select count(*) from QHT");
@@ -236,7 +223,7 @@ public class SingleQuery {
 	   }
 	   
 		//method to add into Suggestions history table
-	   public void InsertIntoSHT() throws SQLException
+	   public synchronized void InsertIntoSHT(Connection conn, String queryLanguageCode, String query, String suggestionLanguageCode, obj[] top) throws SQLException
 	   {
 		   Statement st = conn.createStatement();
 		   ResultSet rs=st.executeQuery("select count(*) from SHT");
@@ -265,11 +252,11 @@ public class SingleQuery {
 			   id++;
 		   }
 		   
-		   InsertIntoQHT(conn.createStatement(),suggestionIDsString);
+		   InsertIntoQHT(conn.createStatement(),suggestionIDsString,queryLanguageCode,query,suggestionLanguageCode);
 		   st.close();
 	   }
 	   
-	   public void swap(int i,int j)
+	   public void swap(int i,int j,obj[] top)
 	   {
 		   obj temp22 = top[i];
 		   top[i] = top[j];

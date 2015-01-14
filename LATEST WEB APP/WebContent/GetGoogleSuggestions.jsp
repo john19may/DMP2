@@ -17,7 +17,6 @@
 		
 			MakeGetRequest make = new MakeGetRequest();
 			
-			System.out.println(request.getParameter("lang1ID")+" "+request.getParameter("lang2ID"));
 			
 			String resp = make.sendGet('t',query,request.getParameter("lang1ID"),request.getParameter("lang2ID"));
 			

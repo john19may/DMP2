@@ -97,6 +97,8 @@
 	      }
 		completeTableString +=']';
 		
+		console.log(completeTableString);
+		
 		$('#hiddenTAble').val(completeTableString);
 		
     };
@@ -105,13 +107,13 @@
 </script>
 </head>
 
-<body bgcolor="#E6E6FA">
+<body background="css/background.png">
 
 <h1 align="center" >Translation Tool</h1>
 <hr>
 <br />
 
-<form action="Tool.jsp" method="POST" accept-charset="ISO-8859-1"  >
+<form action="Tool.jsp" method="POST" accept-charset="ISO-8859-1" >
 
 
 <p><b>Choose Table Format:</b></p>

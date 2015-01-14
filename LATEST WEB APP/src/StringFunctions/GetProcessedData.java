@@ -27,27 +27,9 @@ public class GetProcessedData {
 		
 		String queryLanguageCode, query, suggestionLanguageCode;
 		
-		public GetProcessedData() {
+		public GetProcessedData(Connection con) {
 			
-			//initializing database parameters
-			Driver myDriver = new oracle.jdbc.driver.OracleDriver();
-			try {
-				DriverManager.registerDriver( myDriver );
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			   URL = "jdbc:oracle:thin:@192.168.184.91:1521:cp06";
-			   info = new Properties( );
-			   info.put( "user", "companycom" );
-			   info.put( "password", "companycom" );
-			   try {
-				conn = DriverManager.getConnection(URL, info);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			conn = con;
 		}
 	
 	//method to retrieve data from previous history table database
@@ -82,7 +64,6 @@ public class GetProcessedData {
 						stringsToProcess = arr_str.toArray(new String[arr_str.size()]);
 						deptOfStringToProcess = arr_dept.toArray(new String[arr_dept.size()]);
 						
-						conn.close();
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

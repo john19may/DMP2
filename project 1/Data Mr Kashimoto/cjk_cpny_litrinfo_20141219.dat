@@ -1,0 +1,9 @@
+litr_id, lang_cd, disp_seq, litr_cont
+cpny4702,en,1,%s Not Exist
+cpny4102,en,1,%s Not Input
+cpny4702,ja,1,%s ‚Í‘¶İ‚µ‚Ü‚¹‚ñB
+cpny4102,ja,1,%s ‚Í–¢“ü—Í‚Å‚·B
+
+(%s  is replaced by any string)
+
+

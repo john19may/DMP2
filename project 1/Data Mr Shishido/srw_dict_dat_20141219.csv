@@ -1,0 +1,100 @@
+SCHEM,KEY,TXT,USR_TXT,USR_TXT2,USR_TXT3,USR_TXT4,USR_TXT5,PACKAGE_NAME,PURPOSE,COM,USE_MERGE_FLG,MERGE_STRING,DUPLICATION_PROHIBITION_FLG,PRC_DATE
+root,SrwActCtrlPtnHd,勤務実績入力制御設定,勤務実績入力制御設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwActCtrlPtnHd1,一時保存,一時保存,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwActCtrlPtnHd2,日々提出,日々提出,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwActCtrlPtnHd3,日々確認,日々確認,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwCalcTmLotPtnHd,計算期間用レイアウト設定,計算期間用レイアウト設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwChkContPtnHd,連続勤務チェック設定,連続勤務チェック設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwDailyLayoutPtnHd,勤務実績入力レイアウト設定（日次画面）,勤務実績入力レイアウト設定（日次画面）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwDayCheckPtnHd,休日チェック設定,休日チェック設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwDayLimitPtnHd,勤務実績入力限度値設定（日次限度値）,勤務実績入力限度値設定（日次限度値）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwDcNeedCheckPtnHd,日々確認設定,日々確認設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwDiversityPtnHd,汎用マッチング設定,汎用マッチング設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwEboxPtnHd,特殊勤務入力メンテナンス,特殊勤務入力メンテナンス,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwEvKyukaAcPtnHd,累積代休設定,累積代休設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwGiPtnHd,勤怠データ付加情報設定,勤怠データ付加情報設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwInputCtrlPtnHd,勤務時刻入力制限設定,勤務時刻入力制限設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwKriyuFltCdPtnHd,フィルタリングパターン設定（不就労理由）,フィルタリングパターン設定（不就労理由）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwKyukaPtnHd,[旧]休暇フィルタ設定,[旧]休暇フィルタ設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwListSrchPtnHdBs,月次一覧検索設定（上長メニュー用）,月次一覧検索設定（上長メニュー用）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwListSrchPtnHdPs,月次一覧検索設定（本人メニュー用）,月次一覧検索設定（本人メニュー用）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwListSrchPtnHdSv,月次一覧検索設定（主管部メニュー用）,月次一覧検索設定（主管部メニュー用）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwMonthlyLayoutPtnHd,勤務実績入力レイアウト設定（期間表示）,勤務実績入力レイアウト設定（期間表示）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd,休暇申請ナビゲーション設定,休暇申請ナビゲーション設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd00,休暇申請ナビゲーション00,休暇申請ナビゲーション00,Navigation 00,,,,shuro.aqua,,適用パターン設定名称,0,,0,2010/05/11 16:30:21
+root,SrwNaviKyukaPtnHd01,休暇申請ナビゲーション01,休暇申請ナビゲーション01,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd02,休暇申請ナビゲーション02,休暇申請ナビゲーション02,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd03,休暇申請ナビゲーション03,休暇申請ナビゲーション03,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd04,休暇申請ナビゲーション04,休暇申請ナビゲーション04,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:20
+root,SrwNaviKyukaPtnHd05,休暇申請ナビゲーション05,休暇申請ナビゲーション05,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwNaviKyukaPtnHd06,休暇申請ナビゲーション06,休暇申請ナビゲーション06,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwNaviKyukaPtnHd07,休暇申請ナビゲーション07,休暇申請ナビゲーション07,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwNaviKyukaPtnHd08,休暇申請ナビゲーション08,休暇申請ナビゲーション08,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwNaviKyukaPtnHd09,休暇申請ナビゲーション09,休暇申請ナビゲーション09,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwOctaveLoPtnHd,期間画面勤怠詳細入力設定,期間画面勤怠詳細入力設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwOwriyuFltCdPtnHd,フィルタリングパターン設定（時間外労働理由）,フィルタリングパターン設定（時間外労働理由）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwPrsnlKinmuFltPtnHd,個人契約情報設定,個人契約情報設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwRecessPtnHd,休憩設定,休憩設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwRttlPtnHd,リアルタイム集約設定,リアルタイム集約設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwSpNumberHd,属性別特定時刻・特定値設定（特定数値）,属性別特定時刻・特定値設定（特定数値）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwSpTimeHd,属性別特定時刻・特定値設定（特定時刻）,属性別特定時刻・特定値設定（特定時刻）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwTermLimitPtnHd,勤務実績入力限度値設定（期間限度値）,勤務実績入力限度値設定（期間限度値）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwTmRttlPtnHd,期間リアルタイム集約設定,期間リアルタイム集約設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwTmSumLotPtnHd,期間合計値レイアウト設定,期間合計値レイアウト設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwVarWorkTerm,変形労働制設定,変形労働制設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwVcCpstPtnHd,休暇[ver.2] 時間代休メンテナンス,休暇[ver.2] 時間代休メンテナンス,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwVcDividePtnHd,休暇[ver.2] 付与休暇按分設定,休暇[ver.2] 付与休暇按分設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwVcLayoutPtnHd,休暇[ver.2] 休暇情報レイアウト,休暇[ver.2] 休暇情報レイアウト,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2010/03/23 11:38:34
+root,SrwVcRstPtnHd,休暇[ver.2] 休暇フィルタメンテナンス,休暇[ver.2] 休暇フィルタメンテナンス,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwVcWindowPtnHd,休暇ウィンドウ設定,休暇ウィンドウ設定,,,,,shuro.vc_window,,適用パターン設定名称,0,,0,2011/11/09 20:27:02
+root,SrwWfRolePtnHd,就労役割設定,就労役割設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWittingUsePtnHd,実績申請相互表示機能設定,実績申請相互表示機能設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpDayLimitPtnHd,予定申請入力限度値設定（日次限度値）,予定申請入力限度値設定（日次限度値）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpGiPtnHd,予定勤怠データ付加情報設定,予定勤怠データ付加情報設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpLodPtnHd,勤務予定申請画面レイアウト設定（日次画面）,勤務予定申請画面レイアウト設定（日次画面）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpLotPtnHd,勤務予定申請画面レイアウト設定（期間表示）,勤務予定申請画面レイアウト設定（期間表示）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpRttlPtnHd,予定リアルタイム集約設定,予定リアルタイム集約設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpSumSetPtnHd,予定サマリー設定,予定サマリー設定,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,SrwWpTmLimitPtnHd,予定申請入力限度値設定（期間限度値）,予定申請入力限度値設定（期間限度値）,,,,,shuro.aqua,,適用パターン設定名称,0,,0,2009/11/13 21:01:21
+root,WP_SUM_DEFAULT_OPTION,表を選択して下さい。,表を選択して下さい。,,,,,shuro.wp,,サマリー選択肢デフォルトメッセージ,0,,0,2009/07/22 18:12:18
+root,WP_SUM_FRAME_BUTTON,集計・表示,集計・表示,,,,,shuro.wp,,サマリーボタン,0,,0,2009/07/22 18:12:18
+root,WP_SUM_FRAME_CAPTION,サマリー表,サマリー表,,,,,shuro.wp,,サマリー表,0,,0,2009/07/22 18:12:18
+root,abend_msg01,エラーが発生しました。,エラーが発生しました。,,,,,shuro.common,,異常終了時メッセージ,0,,0,2006/07/21 08:35:17
+root,abend_msg02,エラーが発生しました。システム管理者にお問い合わせください。,エラーが発生しました。システム管理者にお問い合わせください。,,,,,shuro.common,,異常終了時メッセージ,0,,0,2006/07/21 08:35:17
+root,absform_help,ヘルプ,ヘルプ,,,,,shuro.common,absform string,ヘルプ,0,,1,2006/07/21 08:35:17
+root,absform_home,メインページ,メインページ,,,,,shuro.common,absform string,メインページ,0,,1,2009/07/18 18:10:46
+root,absform_logout,ログアウト,ログアウト,,,,,shuro.common,absform string,ログアウト,0,,1,2009/07/18 18:11:27
+root,absform_mailtoadmin,管理者へメール,管理者へメール,,,,,shuro.common,absform string,「管理者へメール」,0,,1,2006/07/21 08:35:17
+root,absform_shurohome,就労メインページ,就労メインページ,,,,,shuro.common,absform string,就労メインページ,0,,1,2009/07/18 18:10:46
+root,add_kinmu_day_row,行追加,行追加,,,,,shuro.personal_kinmu_master,,曜日ごとテンプレート設定画面の行追加,0,,0,2006/09/19 15:41:01
+root,addrow,行追加,行追加,,,,,shuro.workschedule,submitValue,行追加,0,,3,2006/07/21 08:35:17
+root,aero_execute_exception_default,例外が発生したため処理を中断しました,例外が発生したため処理を中断しました,,,,,shuro.aero,,勤怠情報照会・デフォルトエラーメッセージ,0,,0,2009/06/29 11:17:32
+root,aero_execute_exception_not_kintai_kikan,勤怠期間が設定されていないため実行できません,勤怠期間が設定されていないため実行できません,,,,,shuro.aero,,勤怠情報照会・勤怠期間エラーメッセージ,0,,0,2009/02/25 16:19:28
+root,aero_execute_exception_not_syainmst,入社日以前の期間は実行できません,入社日以前の期間は実行できません,,,,,shuro.aero,,勤怠情報照会・社員マスタエラーメッセージ,0,,0,2009/02/25 16:19:28
+root,aero_personal_flow_tgt,個人別フロー設定社員,個人別フロー設定社員,,,,,shuro.aero,,勤怠情報照会・個人別フロー設定社員,0,,0,2008/04/14 16:20:32
+root,aero_reload_cond_btn,検索条件更新,検索条件更新,,,,,shuro.aero,,勤怠情報照会・条件再読込ボタンキャプション,0,,0,2007/07/13 22:11:16
+root,aero_select_all_squad,全ての班,全ての班,,,,,shuro.aero,,勤怠情報照会の全ての班,0,,0,2014/12/07 19:34:24
+root,aero_show_description_checkbox,メニューの説明を表示する,メニューの説明を表示する,,,,,shuro.aero,,勤怠情報照会・メニューの説明書きを表示／非表示切り替えチェックボックスキャプション,0,,0,2014/04/22 21:40:54
+root,aero_syain_status,ステータス,ステータスあ,,,,,shuro.aero,,AEROにおける対象社員のステータス,0,,0,2014/04/25 11:26:56
+root,after_chakuninbi_kinmu_jisseki,入力した着任日以降の勤務実績,入力した着任日以降の勤務実績,,,,,shuro,,入力した着任日以降の勤務実績,0,,0,2007/06/21 21:45:14
+root,aftermonth_msg,次月へ移動します,次月へ移動します,,,,,shuro,,次月へ移動,0,,0,2007/07/16 22:40:30
+root,agreement_no,協定,協定,,,,,shuro.overtime,,36まとめ申請一括承認用キャプション,0,,17,2011/07/01 15:25:25
+root,air_all_following_syz,以下の所属全て,以下の所属全て,,,,,shuro.air_on_web,,以下の所属全て,0,,0,2014/04/23 11:36:28
+root,air_auth_syzs,権限下組織一覧,権限下組織一覧,,,,,shuro.air_on_web,,権限下組織一覧,0,,0,2014/04/23 11:36:29
+root,air_daterange_reverse_error,終了日が開始日よりも前の日付になっています。日付を入力しなおして下さい。,終了日が開始日よりも前の日付になっています。日付を入力しなおして下さい。,,,,,shuro.air_on_web,,選択した開始日・終了日が逆転していた場合にエラーを表示します。,0,,0,2013/06/17 22:56:34
+root,air_illegal_date_error,指定した日付は存在しません。月日を入力しなおして下さい。,指定した日付は存在しません。月日を入力しなおして下さい。_test,,,,,shuro.air_on_web,,選択した月日が存在しなければエラーを表示します。,0,,0,2013/06/17 22:56:32
+root,air_illegal_edate_error,指定した終了日は存在しません。月日を入力しなおして下さい。,指定した終了日は存在しません。月日を入力しなおして下さい。_test,,,,,shuro.air_on_web,,選択した終了日が存在しなければエラーを表示します。,0,,0,2013/06/17 22:56:32
+root,air_illegal_sdate_error,指定した開始日は存在しません。月日を入力しなおして下さい。,指定した開始日は存在しません。月日を入力しなおして下さい。_test,,,,,shuro.air_on_web,,選択した開始日が存在しなければエラーを表示します。,0,,0,2013/06/17 22:56:32
+root,air_jnjstruc_list_title_initial,権限を持つ所属から選択,権限を持つ所属から選択,,,,,shuro.air_on_web,,権限を持つ所属から選択,0,,0,2014/04/23 11:36:30
+root,air_jnjstruc_list_title_select_following,さらに下位所属より選択,さらに下位所属より選択,,,,,shuro.air_on_web,,さらに下位所属より選択,0,,0,2014/04/23 11:36:31
+root,air_jnjstruc_selected_title,選択中の所属,選択中の所属,,,,,shuro.air_on_web,,選択中の所属,0,,0,2014/04/23 11:36:31
+root,air_just_this_syz,この所属のみ,この所属のみ,,,,,shuro.air_on_web,,この所属のみ,0,,0,2014/04/23 11:36:32
+root,air_too_old_eyear_error,終了日に不正な年が入力されています。年を入力しなおして下さい。,終了日に不正な年が入力されています。年を入力しなおして下さい。,,,,,shuro.air_on_web,,入力した終了年が4桁未満であればエラーを表示します。,0,,0,2013/07/25 20:10:00
+root,air_too_old_syear_error,開始日に不正な年が入力されています。年を入力しなおして下さい。,開始日に不正な年が入力されています。年を入力しなおして下さい。,,,,,shuro.air_on_web,,入力した開始年が4桁未満であればエラーを表示します。,0,,0,2013/07/25 20:10:00
+root,air_too_old_year_error,不正な年が入力されています。年を入力しなおして下さい。,不正な年が入力されています。年を入力しなおして下さい。,,,,,shuro.air_on_web,,入力した年が4桁未満であればエラーを表示します。,0,,0,2013/07/25 20:10:00
+root,alert_multi_chk_no_target,編集できる人が誰もいません。,編集できる人が誰もいません。_DICT,,,,,shuro.personal_approver_editor,,承認者一括編集画面の警告文,0,,0,2012/10/15 17:54:00
+root,alert_no_select_approver,新しい承認者を指定してください。,新しい承認者を指定してください。_DICT,,,,,shuro.personal_approver_editor,,承認者一括編集画面の警告文,0,,0,2012/10/15 17:54:00
+root,alert_no_to_no_approver,未設定から未設定への変更は出来ません。,未設定から未設定への変更は出来ません。_DICT,,,,,shuro.personal_approver_editor,,承認者一括編集画面の警告文,0,,0,2012/10/15 17:54:00
+root,alert_same_approver,変更前と変更後の承認者が同じです。,変更前と変更後の承認者が同じです。_DICT,,,,,shuro.personal_approver_editor,,承認者一括編集画面の警告文,0,,0,2012/10/15 17:54:00
+root,alert_syz_to_no_approver,所属別フロー⇒承認者未設定変更は出来ません。,所属別フロー⇒承認者未設定変更は出来ません。_DICT,,,,,shuro.personal_approver_editor,,承認者一括編集画面の警告文,0,,0,2012/10/15 17:54:00
+root,alert_unable_change_calendar_msg,実績がすでに入力されているため、カレンダーは変更できません！,実績がすでに入力されているため、カレンダーは変更できません！,,,,,shuro.workschedule,,警告,0,,0,2006/07/21 08:35:17

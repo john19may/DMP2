@@ -14,23 +14,20 @@
 
 	
 <%
+		//departments that user wants to see data for
 
-//departments that user wants to see data for
-
-	String depts = request.getParameter("depts");
-	String arr2[] = depts.split("\\$");
-	ArrayList arr = new ArrayList();
-	for(int i=0;i<arr2.length;i++)
-	{
+		String depts = request.getParameter("depts");
+		String arr2[] = depts.split("\\$");
+		ArrayList arr = new ArrayList();
+		for(int i=0;i<arr2.length;i++)
+		{
+			
+			arr.add(arr2[i].trim());
+		}
 		
-		arr.add(arr2[i].trim());
-	}
-	
-	SingleQuery d = new SingleQuery();
+		SingleQuery d = new SingleQuery();
 
-	d.setInputInformation(request.getParameter("lang1ID"), request.getParameter("queryString"), request.getParameter("lang2ID"));
-	
-	obj a[] = d.getTop5Results();
+		obj a[] = d.getTop5Results(null,request.getParameter("lang1ID"), request.getParameter("queryString"), request.getParameter("lang2ID"));
 	%>
 	
 	<!-- showing table using custom library table.sorter -->

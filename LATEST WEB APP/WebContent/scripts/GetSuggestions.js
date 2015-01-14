@@ -6,6 +6,7 @@ function ShowSelection(input_language,output_language)
 {
 	$("#img-spinner").show();
 	$("#img-spinner2").show();
+	
 	$('#suggestion_but').attr('disabled', 'disabled');
 	document.getElementById("getResponse").innerHTML="";
 	
@@ -34,6 +35,7 @@ function ShowSelection(input_language,output_language)
   	 
   	 makeAjaxRequest(input_language,selectedText, output_language,depts);
   	 getGoogleWords(input_language,selectedText,output_language);
+  	 
   }
   
 }
@@ -103,5 +105,32 @@ function getGoogleWords(lang1ID, query, lang2ID)
 	    }
 	  }
 	xmlhttp.open("GET","GetGoogleSuggestions.jsp?query="+query+"&lang1ID="+lang1ID+"&lang2ID="+lang2ID,true);
+	xmlhttp.send(null);
+}
+
+
+function getMegaHit(lang1ID, query, lang2ID)
+{
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+		xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    {
+	    	
+	    		document.getElementById("megaHitSuggestion").innerHTML=xmlhttp.responseText;
+	    		$("#img-spinner3").hide();
+	    }
+	    else{
+	    }
+	  }
+	xmlhttp.open("GET","GetMegaHIT.jsp?queryString="+query+"&lang1ID="+lang1ID+"&lang2ID="+lang2ID,true);
 	xmlhttp.send(null);
 }

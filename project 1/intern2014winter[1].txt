@@ -1,0 +1,33 @@
+************************************************
+TITLE: Dictionary Management
+CONTENT:
+
+The captions and messages, which we call "dictionary", used in our products
+are now in state of confusion.
+
+There're so many products, for example HR series has 3 products,
+that is, CJK, CWS and CSR, and each product has their own way
+to manage the captions and messages. That means each product
+has their own database table, and each has different key columns.
+And adding to that, lack of sufficient communication with each other
+caused the situation that some "dictionaries"are slight different
+between the products.
+
+And what is worse, WAP has been heading for global market and
+each product separatedly tried to translate their "dictionaries"
+in some way. Some products decided to asked a company to translate
+their "dictionaries", other products tried to translate their "dictionaries"
+on their own, using developers who know the product well.
+
+
+Against this confused state, we wants you:
+- to unify each "dictionaries"
+- make it easy for everyone in every department(**) to use "dictionary" data
+
+(**) e.g. sales, consultants and of course development departments
+
+[Constraints]
+Server-side programming language: Java (You can use OSS libraries like Spring)
+Database: Oracle
+
+************************************************

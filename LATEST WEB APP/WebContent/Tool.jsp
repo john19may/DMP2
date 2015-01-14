@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="css/style.css" >
 <link rel="stylesheet" href="css/style_table.css" >
 <link rel="stylesheet" href="css/input_table.css" >
-<link rel="stylesheet" href="css/spinner.css" >
 
 <script type="text/javascript" src="scripts/jquery-latest.js"></script> 
 <script type="text/javascript" src="scripts/jquery.tablesorter.js"></script> 
@@ -17,7 +16,7 @@
 
 
 </head>
-<body bgcolor="#E6E6FA">
+<body background="css/background.png">
 
 <div id="table" style= " height: 100%; width: 100%; ">
 
@@ -61,7 +60,7 @@
 	
 	<hr>
 	<div class="spinner" align="center">
-		<img id="img-spinner" src="css/spinner.gif" alt="Loading" height="70px" width="70px" alt="Loading" />
+		<img id="img-spinner" src="css/spinner.gif" alt="Loading" height="70px" width="70px" />
 	</div>
 		    
 	<!-- The textarea section ends -->
@@ -71,10 +70,17 @@
 	</div>
 	<hr>
 	<div class="spinner" align="center">
-		<img id="img-spinner2" src="css/spinner.gif" alt="Loading" height="70px" width="70px" alt="Loading" />
+		<img id="img-spinner2" src="css/spinner.gif" alt="Loading" height="70px" width="70px"  />
 	</div>
 	
 	<div id="googleSuggestion">
+	
+	</div>
+	<hr>
+	<div class="spinner" align="center">
+		<img id="img-spinner3" src="css/spinner.gif" alt="Loading" height="70px" width="70px"  />
+	</div>
+	<div id="megaHitSuggestion">
 	
 	</div>
 	<hr>
@@ -89,6 +95,7 @@
 
 	$("#img-spinner").hide();
 	$("#img-spinner2").hide();
+	$("#img-spinner3").hide();
 	
 	var arr = eval("<%=request.getParameter("tableString")%>");
 	
@@ -171,13 +178,15 @@
 		
 		document.getElementById("googleSuggestion").innerHTML="";
 		document.getElementById("getResponse").innerHTML="";
+		document.getElementById("megaHitSuggestion").innerHTML="";
 		
 		document.getElementById("currentEntry").innerHTML = currentRow+"/"+(arr.length-1);
 		
 		//alert(arr[ro][text_columns]);
 		document.getElementById("Editor").value =arr[ro][text_columns];
 		document.getElementById("Editor_result").value =arr_result[ro][text_columns];
-		
+		$("#img-spinner3").show();
+		getMegaHit("<%=request.getParameter("input_language")%>",document.getElementById("Editor").value,"<%=request.getParameter("output_language")%>");
 	}
 	
 	function getSuggestions()
@@ -227,6 +236,10 @@
 			}
 	}
 	
+	function usePressed()
+	{
+		document.getElementById("Editor_result").value = document.getElementById("megahitUse").innerHTML;
+	}
 </script>
 
 
